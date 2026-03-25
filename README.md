@@ -1,32 +1,29 @@
-# Puzzle
+# Puzzle → AI-Native LMS Rewrite
 
-This solution has been modernized to **C# 14** on **.NET 10**.
+This repository is being repurposed into an AI-native Learning Management System (LMS).
 
-## Prerequisites
+## Start here
 
-- .NET 10 SDK
-- Node.js (only required if you want to run the React client in development)
+Read the document execution order first:
 
-## Run the web app
+- `docs/00_AI_EXECUTION_ORDER.md`
 
-From the repository root:
+Then execute each document in sequence (`01` to `13`) to drive planning, architecture, implementation, and operations.
+
+## Existing runtime (current code)
+
+The existing codebase currently runs as a .NET web app:
 
 ```bash
 dotnet run --project WebApplication/WebApplication.csproj
 ```
 
-## Run the Equality demo
+## Goal
 
-A new `EqualityDemo` class demonstrates value-based equality semantics with:
+Transition from the current puzzle/demo structure to an LMS that supports:
 
-- `IEquatable<T>`
-- overridden `Equals` and `GetHashCode`
-- `==` and `!=` operators
-
-Run it from the repository root:
-
-```bash
-dotnet run --project WebApplication/WebApplication.csproj -- --demo-equality
-```
-
-Expected output includes comparisons and distinct item counting in a `HashSet`.
+- Multi-tenant organizations
+- Role-based administration
+- Course authoring and publishing
+- Assessments, grading, and progress tracking
+- Reporting, notifications, and auditability
