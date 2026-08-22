@@ -5,22 +5,24 @@ namespace LMS.Infrastructure.Courses;
 
 public sealed class InMemoryCourseRepository : ICourseRepository
 {
-    private static readonly Guid OrganizationId = Guid.Parse("b1f50a35-ef8f-4ab7-a615-6979076dc97b");
-
-    private static readonly IReadOnlyCollection<Course> SeedCourses = CreateSeedCourses();
-
     public Task<IReadOnlyCollection<Course>> ListPublishedAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var publishedCourses = SeedCourses
+        var publishedCourses = CourseSeedData.CreateCourses()
             .Where(course => course.Status == CourseStatus.Published)
             .ToArray();
 
         return Task.FromResult<IReadOnlyCollection<Course>>(publishedCourses);
     }
 
-    private static IReadOnlyCollection<Course> CreateSeedCourses()
+}
+
+internal static class CourseSeedData
+{
+    private static readonly Guid OrganizationId = Guid.Parse("b1f50a35-ef8f-4ab7-a615-6979076dc97b");
+
+    internal static IReadOnlyCollection<Course> CreateCourses()
     {
         var onboarding = Course.Draft(
             Guid.Parse("75ed4c5d-113d-46a1-bf84-5322b8c82aa1"),
